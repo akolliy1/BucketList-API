@@ -36,7 +36,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // User(app);
 // set up a default catch-all route
 app.get('*', (req, res) => {
-  res.json({ message: 'welcome to default routes' });
+  res.json({ message: 'Welcome to the BucketList-API' });
 });
 
 if (env !== 'test') {
