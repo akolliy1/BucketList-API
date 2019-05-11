@@ -23,6 +23,8 @@ const persistConfig = {
   storage,
   whitelist: [
     'authReducer',
+    'createBucketListReducer',
+    'fetchBucketListReducer'
   ]
 };
 
