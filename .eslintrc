@@ -17,10 +17,7 @@
       "bucketListModel": true,
       "bucketItemModel": true,
       "generateToken": true,
-      "signinHash": true,
-      "signinSlug": true,
-      "getUserSlug": true,
-      "getUser1Slug": true
+      "signinHash": true
     },
     "plugins": [
       "react-hooks"

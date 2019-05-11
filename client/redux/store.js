@@ -6,14 +6,18 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import loadingReducer from './loadingReducer';
 import authReducer from '../features/authentication/authReducer';
-import createBucketListReducer from '../features/feed/Reducers/createBucketListReducer';
-import fetchBucketListReducer from '../features/feed/Reducers/fetchBucketListReducer';
+import createBucketListReducer from '../features/feed/reducers/createBucketListReducer';
+import fetchBucketListReducer from '../features/feed/reducers/fetchBucketListReducer';
+import getBucketItemsReducer from '../features/feed/reducers/getBucketItemsReducer';
+import createItemReducer from '../features/feed/reducers/createItemReducer';
 
 const reducer = combineReducers({
   loadingReducer,
   authReducer,
   createBucketListReducer,
   fetchBucketListReducer,
+  getBucketItemsReducer,
+  createItemReducer,
 });
 
 let middleware = applyMiddleware(thunk, logger);
@@ -24,7 +28,9 @@ const persistConfig = {
   whitelist: [
     'authReducer',
     'createBucketListReducer',
-    'fetchBucketListReducer'
+    'fetchBucketListReducer',
+    'getBucketItemsReducer',
+    'createItemReducer',
   ]
 };
 

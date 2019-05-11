@@ -1,4 +1,4 @@
-import { CREATE_BUCKET_LIST } from 'Redux/actionTypes';
+import { CREATE_BUCKET_ITEM } from 'Redux/actionTypes';
 import isExpired from 'Utilities/isExpired';
 
 import loading from 'Redux/loading';
@@ -6,18 +6,18 @@ import loading from 'Redux/loading';
 import axios from 'Redux/axios';
 
 const postUserAddressAction = (type, data) => ({
-  type: `${CREATE_BUCKET_LIST}_${type}`,
+  type: `${CREATE_BUCKET_ITEM}_${type}`,
   data,
 });
 
-const postUserAddress = data => async (dispatch, getState) => {
+const postUserAddress = (id, data) => async (dispatch, getState) => {
   try {
     const { authReducer } = getState();
     if (!isExpired(authReducer.user.token)) {
-      dispatch(loading(CREATE_BUCKET_LIST, true));
+      dispatch(loading(CREATE_BUCKET_ITEM, true));
       const request = await axios({
         method: 'POST',
-        url: '/bucketlists/',
+        url: `/bucketlists/${id}/items`,
         data,
         headers: {
           authorization: localStorage.getItem('x-access-token'),
@@ -25,13 +25,13 @@ const postUserAddress = data => async (dispatch, getState) => {
         }
       });
       dispatch(postUserAddressAction('SUCCESS', request.data));
-      dispatch(loading(CREATE_BUCKET_LIST, false));
+      dispatch(loading(CREATE_BUCKET_ITEM, false));
     } else {
       dispatch({ type: 'AUTHENTICATE_USER_ERROR', data: '' });
     }
   } catch (error) {
     dispatch(postUserAddressAction('ERROR', error.response.data));
-    dispatch(loading(CREATE_BUCKET_LIST, false));
+    dispatch(loading(CREATE_BUCKET_ITEM, false));
   }
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Brand from '../brand/Brand';
 
 const Navbar = ({ signOut }) => (
@@ -27,25 +28,6 @@ const Navbar = ({ signOut }) => (
             {' '}
             <span className="sr-only">(current)</span>
           </a>
-        </li>
-        <li className="nav-item dropdown">
-          <a
-            className="nav-link dropdown-toggle"
-            href="#a"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-          Explore
-          </a>
-          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a className="dropdown-item" href="#a">Action</a>
-            <a className="dropdown-item" href="#a">Another action</a>
-            <div className="dropdown-divider" />
-            <a className="dropdown-item" href="#a">Something else here</a>
-          </div>
         </li>
       </ul>
       <form className="form-inline my-2 my-lg-0">
@@ -86,10 +68,14 @@ const Navbar = ({ signOut }) => (
   </nav>
 );
 
-const AuthNavbar = ({ signOut }) => (
+const AuthNavbar = ({ ...props }) => (
   <div className="container px-0">
-    <Navbar signOut={signOut} />
+    <Navbar {...props} />
   </div>
 );
 
 export default AuthNavbar;
+
+Navbar.propTypes = {
+  signOut: PropTypes.func.isRequired
+};

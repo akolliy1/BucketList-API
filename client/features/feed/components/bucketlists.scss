@@ -8,3 +8,14 @@
         text-decoration: none
     }
 }
+
+.custom__info {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    cursor: pointer;
+    &:hover {
+        text-decoration: none
+    }
+}

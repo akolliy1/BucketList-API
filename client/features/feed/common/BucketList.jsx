@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
+import Goto from './Goto';
+import Remark from './Remark';
+import EditIcon from './EditIcon';
 import './bucketlist.scss';
 
 const BucketList = ({
@@ -10,14 +12,37 @@ const BucketList = ({
   content,
   addIcon,
   viewItemOnNextLine,
+  showRemark,
   handleEdit,
+  fetchBucketItem,
   id,
+  listId,
+  markAsDone,
 }) => {
   const string = title;
   const length = 45;
   const trimmedString = string.substring(0, length);
   const [isFocus, setFocus] = useState(false);
-  const [inputData, setData] = useState(false);
+  const [inputData, setData] = useState('');
+
+  const handleClick = () => {
+    if (inputData.length >= 3) {
+      setFocus(false);
+      const editedData = { name: inputData };
+      handleEdit(id, editedData, listId);
+    }
+  };
+
+  const handleDone = () => {
+    setFocus(false);
+    const doneData = {
+      name: content,
+      done: !markAsDone
+    };
+
+    handleEdit(id, doneData, listId);
+  };
+
   return (
     <div className="col-12 mb-1">
       <a href={link} className="editor-content">
@@ -26,14 +51,9 @@ const BucketList = ({
         </div>
       </a>
       <div className="editor">
-        <i
-          className="far fa-edit editor-item"
-          onKeyDown={() => {}}
-          role="button"
-          aria-pressed="false"
-          tabIndex="0"
-          title="edit"
-          onClick={() => setFocus(!isFocus)}
+        <EditIcon
+          isFocus={isFocus}
+          setFocus={setFocus}
         />
         {addIcon && (
         <i
@@ -41,12 +61,15 @@ const BucketList = ({
           title="add it to your bucket list"
         />
         )}
-        {viewItemOnNextLine && (
-        <i
-          className="fas fa-angle-double-right editor-item ml-2"
-          title="view on the next section"
+        <Goto
+          fetchBucketItem={fetchBucketItem}
+          viewItemOnNextLine={viewItemOnNextLine}
         />
-        )}
+        <Remark
+          markAsDone={markAsDone}
+          handleDone={handleDone}
+          showRemark={showRemark}
+        />
       </div>
       {isFocus && (
         <div>
@@ -66,7 +89,7 @@ const BucketList = ({
             aria-pressed="false"
             tabIndex="0"
             title="edit"
-            onClick={() => handleEdit(id, { name: inputData })}
+            onClick={() => handleClick()}
           />
         </div>
       )}
@@ -87,6 +110,9 @@ BucketList.defaultProps = {
   viewItemOnNextLine: false,
   handleEdit: () => {},
   id: '',
+  listId: '',
+  showRemark: false,
+  markAsDone: false,
 };
 
 BucketList.propTypes = {
@@ -95,7 +121,11 @@ BucketList.propTypes = {
   name: PropTypes.string,
   content: PropTypes.string,
   id: PropTypes.string,
+  listId: PropTypes.string,
   addIcon: PropTypes.bool,
+  markAsDone: PropTypes.bool,
+  showRemark: PropTypes.bool,
   viewItemOnNextLine: PropTypes.bool,
   handleEdit: PropTypes.func,
+  fetchBucketItem: PropTypes.func.isRequired,
 };

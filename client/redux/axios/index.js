@@ -8,4 +8,14 @@ const instance = axios.create({
   baseURL,
 });
 
+// Add a request interceptor
+instance.interceptors.request.use((config) => {
+  // Do something before request is sent
+  console.log('config', config);
+  return config;
+}, (error) => {
+  console.log('config error', error);
+  // Do something with request error
+  return Promise.reject(error);
+});
 export default instance;
