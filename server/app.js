@@ -32,7 +32,7 @@ const swaggerDocument = {
   ...swaggerJSON,
   host:
       env === 'production'
-        ? 'https://BukkaList-API.herokuapp.com/'
+        ? 'https://bucketlist-ap.herokuapp.com/'
         : `localhost:${port}`,
 };
 // swaggerUi.
