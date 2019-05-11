@@ -1,26 +1,30 @@
 {
     "root": true,
-    "extends": "airbnb-base",
+    "extends": "airbnb",
+    "parser": "babel-eslint",
     "env": {
       "node": true,
       "es6": true,
-      "jest": true
+      "jest": true,
+      "browser": true,
+      "jquery": true
     },
     "globals": {
       "request": true,
       "server": true,
       "addressModel": true,
       "userModel": true,
-      "bukkaModel": true,
-      "mealModel": true,
+      "bucketListModel": true,
+      "bucketItemModel": true,
       "generateToken": true,
-      "orderModel": true,
-      "contactModel": true,
       "signinHash": true,
       "signinSlug": true,
       "getUserSlug": true,
       "getUser1Slug": true
     },
+    "plugins": [
+      "react-hooks"
+    ],
     "rules": {
       "linebreak-style": 0,
       "one-var": 0,
@@ -35,6 +39,11 @@
       "func-names": 0,
       "curly": ["error", "multi-line"],
       "import/extensions": "off",
+      "comma-dangle": 0,
+      "jsx-a11y/media-has-caption": 0,
+      "experimentalDecorators": 0,
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
       "import/no-unresolved": "off",
       "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
       "valid-jsdoc": [
@@ -54,6 +63,29 @@
             "MethodDefinition": true,
             "ClassDeclaration": true
           }
+        }
+      ],
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [".js", ".jsx"]
+        }
+      ],
+      "jsx-a11y/label-has-for": [
+        2,
+        {
+          "components": ["Label"],
+          "required": {
+            "every": ["id"]
+          },
+          "allowChildren": false
+        }
+      ],
+      "jsx-a11y/anchor-is-valid": [
+        "error",
+        {
+          "components": ["Link"],
+          "specialLink": ["to"]
         }
       ]
     }

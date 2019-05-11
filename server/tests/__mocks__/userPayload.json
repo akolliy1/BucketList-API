@@ -1,0 +1,28 @@
+{
+  "signUp": {
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "email": "email@gmail.com",
+    "password": "secretPIN123"
+  },
+  "signIn": {
+    "email": "forexample@email.com",
+    "password": "password1"
+  },
+  "editUser": {
+    "firstName": "firstNameEdit",
+    "lastName": "lastNameEdit",
+    "email": "editEmailEdit@gmail.com"
+  },
+  "editUserPayload": {
+    "email": "editedEmailValid@email.com",
+    "firstName": "valid",
+    "lastName": "valid"
+  },
+  "invalidPayload": {
+    "email": "",
+    "lastName": "invalid",
+    "firstName": "invalid",
+    "imageUrl": "http://new-img-url.com"
+  }
+}
