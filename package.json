@@ -7,11 +7,12 @@
     "node": "10.x"
   },
   "scripts": {
-    "start": "node ./server/app.js",
-    "heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "start": "node dist/server",
+    "heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && npm run build&& npm run build:server",
     "start:dev": "nodemon --exec babel-node -- ./server/app.js",
     "start:client": "webpack-dev-server --host 0.0.0.0 --hot --mode development",
     "build": "webpack --mode production",
+    "build:server": "babel ./server/ -d ./dist",
     "int:test": "export NODE_ENV=test&&jest tests --detectOpenHandles --forceExit",
     "unit:test": "export NODE_ENV=test&&jest src/**/test/*.spec.js --detectOpenHandles --forceExit",
     "int:test:win": "SET NODE_ENV=test&&jest tests --detectOpenHandles --forceExit",
