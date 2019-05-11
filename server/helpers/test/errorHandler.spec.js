@@ -6,7 +6,7 @@ describe('user Error Handler', () => {
     const errorData = errorHandler({ code: 11000 }, 'user');
     const { message, statusCode } = errorData;
 
-    expect(message).toEqual('A user with this email already exists');
+    expect(message).toEqual('It seems you\'ve registered, please login or signup with another email.');
     expect(statusCode).toEqual(409);
   });
 
