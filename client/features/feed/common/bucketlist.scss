@@ -1,0 +1,31 @@
+.editor {
+    position: absolute;
+    z-index: 10;
+    display: none;
+    top: 0;
+    right: 20px;
+    color: #28a745;
+    &:hover {
+        display: block
+    }
+}
+
+.editor-item {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.editor-content{
+    &:hover ~ .editor {
+        display: block
+    }
+}
+
+.send-edit-icon {
+    position: absolute;
+    right: 25px;
+    color: #28a745;
+    margin-top: 10px;
+    font-size: 22px;
+    cursor: pointer;
+}
