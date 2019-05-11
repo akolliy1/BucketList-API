@@ -9,6 +9,7 @@ const BucketList = ({
   link,
   content,
   addIcon,
+  viewItemOnNextLine,
   handleEdit,
   id,
 }) => {
@@ -38,6 +39,12 @@ const BucketList = ({
         <i
           className="fas fa-plus editor-item ml-2"
           title="add it to your bucket list"
+        />
+        )}
+        {viewItemOnNextLine && (
+        <i
+          className="fas fa-angle-double-right editor-item ml-2"
+          title="view on the next section"
         />
         )}
       </div>
@@ -77,6 +84,7 @@ BucketList.defaultProps = {
   content: `Family Bucket List: 65 Fun Activities &
   the Best Things to Do with Kids`,
   addIcon: false,
+  viewItemOnNextLine: false,
   handleEdit: () => {},
   id: '',
 };
@@ -88,5 +96,6 @@ BucketList.propTypes = {
   content: PropTypes.string,
   id: PropTypes.string,
   addIcon: PropTypes.bool,
+  viewItemOnNextLine: PropTypes.bool,
   handleEdit: PropTypes.func,
 };

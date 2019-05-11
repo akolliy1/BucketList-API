@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetched: true,
-        data: action.data.availableBucketLists,
+        data: action.data.data,
         errorMessage: ''
       };
 

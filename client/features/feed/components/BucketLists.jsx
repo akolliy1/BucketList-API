@@ -31,6 +31,7 @@ const BucketLists = ({ data, fetchBucket, editBucket }) => {
               content={bucket.name}
               handleEdit={editBucket}
               id={bucket._id}
+              viewItemOnNextLine
             />
           ))
         }
