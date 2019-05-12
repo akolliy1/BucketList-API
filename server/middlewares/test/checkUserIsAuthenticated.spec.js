@@ -1,5 +1,5 @@
+import token from '__Mocks__/token';
 import checkUserIsAuthenticated from '../checkUserIsAuthenticated';
-import token from '../../tests/__mocks__/token';
 
 describe('Authentication check', () => {
   let req, res, next;
