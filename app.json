@@ -1,0 +1,23 @@
+{
+    "name": "BucketList-API",
+    "description": "",
+    "scripts": {
+    },
+    "env": {
+      "DB_URL": {
+        "required": true
+      },
+      "SECRET": {
+        "required": true
+      }
+    },
+    "formation": {
+    },
+    "addons": [
+  
+    ],
+    "buildpacks": [
+  
+    ]
+  }
+  
