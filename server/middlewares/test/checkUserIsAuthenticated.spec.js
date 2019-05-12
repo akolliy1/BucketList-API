@@ -1,4 +1,4 @@
-import token from '__Mocks__/token';
+import token from 'Mocks/token';
 import checkUserIsAuthenticated from '../checkUserIsAuthenticated';
 
 describe('Authentication check', () => {

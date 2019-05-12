@@ -1,4 +1,4 @@
-import createToken from '../../src/helpers/createToken';
+import createToken from '../../helpers/createToken';
 
 const token = createToken({
   firstName:
