@@ -17,9 +17,9 @@ class BucketLists {
  */
   static async createBucketList(req, res) {
     try {
-      const { id } = req.decoded;
+      const { _id } = req.decoded;
       const data = await BucketList.create({
-        ...req.body, created_by: id,
+        ...req.body, created_by: _id,
       });
       return res.status(201).json({
         message: 'Great BucketLists',
@@ -45,10 +45,9 @@ class BucketLists {
     try {
       const { id } = req.params;
       const data = await BucketList.findOneAndUpdate(
-        { _id: id },
+        { _id: id, created_by: req.decoded._id, },
         {
           ...req.body,
-          created_by: req.decoded.slug,
           isDeleted: false,
         },
         { new: true },
@@ -130,7 +129,7 @@ class BucketLists {
   static async deleteBucketList(req, res) {
     try {
       const { id } = req.params;
-      await BucketList.findOneAndDelete({ _id: id });
+      await BucketList.findOneAndDelete({ _id: id, created_by: req.decoded._id, });
       return res.status(200).json({
         message: 'Bucket List successfully deleted',
       });

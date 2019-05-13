@@ -357,6 +357,9 @@ img {
   .editor-add:hover {
     text-decoration: none; }
 
+.text-capitalize {
+  text-transform: capitalize; }
+
 .custom__info {
   font-size: 15px;
   display: flex;

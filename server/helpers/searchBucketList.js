@@ -15,11 +15,12 @@ export default class Search {
    */
   static async sortByDate(req, res) {
     const { query } = req;
+    const { _id } = req.decoded;
     try {
       const limit = Number(query.limit) || 20,
         currentPage = Number(query.page) || 1,
         offset = (currentPage - 1) * limit;
-      const data = await BucketList.find({})
+      const data = await BucketList.find({ created_by: _id })
         .sort({ date: -1 })
         .skip(offset)
         .limit(limit);
@@ -49,13 +50,14 @@ export default class Search {
    */
   static async sortByName(req, res) {
     const { query } = req;
+    const { _id } = req.decoded;
     try {
       const { q } = query,
         limit = Number(query.limit) || 20,
         currentPage = Number(query.page) || 1,
         offset = (currentPage - 1) * limit;
 
-      const data = await BucketList.find({ name: q })
+      const data = await BucketList.find({ name: q, created_by: _id })
         .skip(offset)
         .limit(limit);
       if (data.length) {

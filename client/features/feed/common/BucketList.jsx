@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Goto from './Goto';
+import Delete from './Delete';
 import Remark from './Remark';
 import EditIcon from './EditIcon';
 import './bucketlist.scss';
@@ -13,11 +14,14 @@ const BucketList = ({
   addIcon,
   viewItemOnNextLine,
   showRemark,
+  showDelete,
   handleEdit,
   fetchBucketItem,
   id,
+  showFullContent,
   listId,
   markAsDone,
+  handleDelete,
 }) => {
   const string = title;
   const length = 45;
@@ -25,7 +29,8 @@ const BucketList = ({
   const [isFocus, setFocus] = useState(false);
   const [inputData, setData] = useState('');
 
-  const handleClick = () => {
+  const handleClick = (evt) => {
+    evt.preventDefault();
     if (inputData.length >= 3) {
       setFocus(false);
       const editedData = { name: inputData };
@@ -44,12 +49,33 @@ const BucketList = ({
   };
 
   return (
-    <div className="col-12 mb-1">
+    <div className="col-12 mb-1 px-0">
+      {link
+      && (
       <a href={link} className="editor-content">
         <div className="card card-body">
-          {trimmedString}
+          <span>
+            {showRemark && markAsDone && <span>✦</span>}
+            {showRemark && !markAsDone && <span>✧</span>}
+            {showFullContent ? content : `${trimmedString} ...`}
+          </span>
         </div>
       </a>
+      )
+    }
+      {!link
+      && (
+      <div className="editor-content">
+        <div className="card card-body">
+          <span>
+            {showRemark && markAsDone && <span>✦ </span>}
+            {showRemark && !markAsDone && <span>✧ </span>}
+            {showFullContent ? content : trimmedString}
+          </span>
+        </div>
+      </div>
+      )
+      }
       <div className="editor">
         <EditIcon
           isFocus={isFocus}
@@ -70,6 +96,10 @@ const BucketList = ({
           handleDone={handleDone}
           showRemark={showRemark}
         />
+        <Delete
+          handleDelete={handleDelete}
+          showDelete={showDelete}
+        />
       </div>
       {isFocus && (
         <div>
@@ -80,7 +110,6 @@ const BucketList = ({
             defaultValue={content || ''}
             onChange={e => setData(e.target.value)}
             onFocus={() => {}}
-            maxLength="200"
           />
           <i
             className="fas fa-paper-plane send-edit-icon"
@@ -89,7 +118,7 @@ const BucketList = ({
             aria-pressed="false"
             tabIndex="0"
             title="edit"
-            onClick={() => handleClick()}
+            onClick={handleClick}
           />
         </div>
       )}
@@ -102,20 +131,25 @@ export default BucketList;
 BucketList.defaultProps = {
   title: `Family Bucket List: 65 Fun Activities &
   the Best Things to Do with Kids`,
-  link: '/',
+  link: '',
   name: 'bucket',
   content: `Family Bucket List: 65 Fun Activities &
   the Best Things to Do with Kids`,
   addIcon: false,
   viewItemOnNextLine: false,
   handleEdit: () => {},
+  fetchBucketItem: () => {},
+  handleDelete: () => {},
   id: '',
   listId: '',
   showRemark: false,
   markAsDone: false,
+  showDelete: false,
+  showFullContent: false,
 };
 
 BucketList.propTypes = {
+  showFullContent: PropTypes.bool,
   title: PropTypes.string,
   link: PropTypes.string,
   name: PropTypes.string,
@@ -124,8 +158,10 @@ BucketList.propTypes = {
   listId: PropTypes.string,
   addIcon: PropTypes.bool,
   markAsDone: PropTypes.bool,
+  showDelete: PropTypes.bool,
   showRemark: PropTypes.bool,
   viewItemOnNextLine: PropTypes.bool,
   handleEdit: PropTypes.func,
-  fetchBucketItem: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func,
+  fetchBucketItem: PropTypes.func,
 };

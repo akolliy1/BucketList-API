@@ -12,10 +12,10 @@ const authUserAction = (type, data) => ({
 const authAction = () => async (dispatch) => {
   try {
     dispatch(loading(AUTHENTICATE_USER, true));
+    localStorage.removeItem('x-access-token');
     await axios.post('/logout');
     dispatch(authUserAction('ERROR', ''));
     dispatch(loading(AUTHENTICATE_USER, false));
-    localStorage.removeItem('x-access-token');
   } catch (error) {
     dispatch(loading(AUTHENTICATE_USER, false));
     dispatch(authUserAction('ERROR', error.response.data));

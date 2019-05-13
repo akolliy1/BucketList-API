@@ -51,7 +51,7 @@ const Navbar = ({ signOut }) => (
           tabIndex="-1"
           aria-disabled="true"
         >
-          Akolade
+          Welcome
         </a>
       </span>
       <span

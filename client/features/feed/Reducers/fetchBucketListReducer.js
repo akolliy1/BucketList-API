@@ -20,6 +20,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetched: true,
+        data: {},
         errorMessage: action.data.message
       };
 

@@ -12,7 +12,6 @@ const AddToBucket = ({ createBucket }) => {
           placeholder="Add text..."
           onChange={e => setData(e.target.value)}
           onFocus={() => {}}
-          maxLength="200"
         />
         <button
           className="btn btn-success btn-lg btn-block text-white"
