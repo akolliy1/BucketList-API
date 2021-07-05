@@ -1,0 +1,25 @@
+.editor-add {
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    cursor: pointer;
+    &:hover {
+        text-decoration: none
+    }
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.custom__info {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    cursor: pointer;
+    &:hover {
+        text-decoration: none
+    }
+}
